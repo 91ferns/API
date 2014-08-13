@@ -30,6 +30,14 @@ class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 		hey.create
 	}
 
+	get("/benchmark") {
+		"hey"
+	}
+
+	get("/flowers") {
+		FlowerData.all
+	}
+
 	object GithubRequest {
 
 		def getUser(id: String) : String = {
@@ -54,6 +62,8 @@ class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 			Flower("black-rose", "Black Rose"))
 
 	}
+
+
 
 	// Before every action runs, set the content type to be in JSON format.
 	before() {
