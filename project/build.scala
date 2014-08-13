@@ -5,15 +5,15 @@ import org.scalatra.sbt.PluginKeys._
 import com.mojolly.scalate.ScalatePlugin._
 import ScalateKeys._
 
-object TestScalaApiBuild extends Build {
+object FerntasticApiBuild extends Build {
   val Organization = "com.ingenuity"
-  val Name = "Test Scala API"
+  val Name = "Ferntastic API"
   val Version = "0.1.0-SNAPSHOT"
   val ScalaVersion = "2.11.1"
   val ScalatraVersion = "2.3.0"
 
   lazy val project = Project (
-    "test-scala-api",
+    "ferntastic-api",
     file("."),
     settings = ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
       organization := Organization,

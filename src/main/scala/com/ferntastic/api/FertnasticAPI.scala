@@ -1,4 +1,4 @@
-package com.ingenuity.api
+package com.ferntastic.api
 
 import org.scalatra._
 import scalate.ScalateSupport
@@ -9,7 +9,7 @@ import org.json4s.{DefaultFormats, Formats}
 // JSON handling support from Scalatra
 import org.scalatra.json._
 
-class idapi extends TestScalaApiStack with JacksonJsonSupport {
+class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 
 	// Sets up automatic case class to JSON output serialization, required by
   	// the JValueResult trait.
