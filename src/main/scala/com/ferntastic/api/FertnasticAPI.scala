@@ -9,6 +9,9 @@ import org.json4s.{DefaultFormats, Formats}
 // JSON handling support from Scalatra
 import org.scalatra.json._
 
+// HTTP libraries
+import scalaj.http.Http
+
 class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 
 	// Sets up automatic case class to JSON output serialization, required by
@@ -19,11 +22,22 @@ class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 		FlowerData.all
 	}
 
-	get("/articles/:id") {
-		<p>Hello {params("id")}</p>
+	get("/github/users/:id") {
+		GithubRequest.getUser(params("id"))
 	}  
 	// A Flower object to use as a faked-out data model
 	case class Flower(slug: String, name: String)
+
+	object GithubRequest {
+
+		def getUser(id: String) : String = {
+
+			var url = "https://api.github.com/users/" + id
+			return Http(url).asString
+
+		}
+
+	}
 
 	object FlowerData {
 
