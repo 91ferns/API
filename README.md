@@ -1,12 +1,4 @@
-# Test Scala API #
+API
+===
 
-## Build & Run ##
-
-```sh
-$ cd Test_Scala_API
-$ ./sbt
-> container:start
-> browse
-```
-
-If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser.
+91ferns API written in scala
