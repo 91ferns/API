@@ -15,7 +15,7 @@ object FerntasticApiBuild extends Build {
   lazy val project = Project (
     "ferntastic-api",
     file("."),
-    settings = ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
+    settings = seq(com.typesafe.sbt.SbtStartScript.startScriptForClassesSettings: _*) ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
       organization := Organization,
       name := Name,
       version := Version,
@@ -26,8 +26,8 @@ object FerntasticApiBuild extends Build {
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
-        "org.eclipse.jetty" % "jetty-webapp" % "9.1.3.v20140225" % "container",
-        "org.eclipse.jetty" % "jetty-plus" % "9.1.3.v20140225" % "container",
+	"org.eclipse.jetty" % "jetty-webapp" % "8.1.10.v20130312" % "compile;container",
+	"org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "compile;container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar")),
         "org.scalatra" %% "scalatra-json" % "2.3.0",
         "org.json4s"   %% "json4s-jackson" % "3.2.9",
         "org.scalaj" %% "scalaj-http" % "0.3.16",

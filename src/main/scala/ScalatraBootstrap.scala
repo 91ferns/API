@@ -8,6 +8,6 @@ class ScalatraBootstrap extends LifeCycle {
 
 		val mongoDB = new MongoDB()
 
-    	context.mount(new FerntasticAPI(mongoDB), "/*")
+		context.mount(new FerntasticAPI(mongoDB), "/*")
   	}
 }
