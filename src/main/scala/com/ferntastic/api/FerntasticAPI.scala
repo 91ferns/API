@@ -12,22 +12,28 @@ import org.scalatra.json._
 // HTTP libraries
 import scalaj.http.Http
 
+import com.mongodb.casbah.Imports._
+
 
 import com.ferntastic.api.service.MongoDB
 
-class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
+class FerntasticAPI(db: MongoDB) extends FerntasticAPIStack with JacksonJsonSupport {
 
 	// Sets up automatic case class to JSON output serialization, required by
   	// the JValueResult trait.
   	protected implicit val jsonFormats: Formats = DefaultFormats.withBigDecimal
+
+  	get("/") {
+  		db.collection.find()
+  		for  {x <- db.collection } yield x.toString()
+  	}
 
 	get("/github/users/:id") {
 		GithubRequest.getUser(params("id"))
 	}  
 
 	get("/seed") {
-		val hey = new MongoDB();
-		hey.create
+		db.create
 	}
 
 	get("/benchmark") {
@@ -35,7 +41,9 @@ class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 	}
 
 	get("/flowers") {
-		FlowerData.all
+		contentType="text/html"
+		var flowerNames = for{flower: Flower <- FlowerData.all} yield flower.name
+		jade("hello-scalate", "flowers" -> flowerNames.mkString(", "))
 	}
 
 	object GithubRequest {
@@ -59,7 +67,9 @@ class FerntasticAPI extends FerntasticAPIStack with JacksonJsonSupport {
 		var all = List(
 			Flower("yellow-tulip", "Yellow Tulip"),
 			Flower("red-rose", "Red Rose"),
-			Flower("black-rose", "Black Rose"))
+			Flower("black-rose", "Black Rose"),
+			Flower("daisy", "Daisy"),
+			Flower("japetto", "Pinocchio"))
 
 	}
 

@@ -32,6 +32,7 @@ object FerntasticApiBuild extends Build {
         "org.json4s"   %% "json4s-jackson" % "3.2.9",
         "org.scalaj" %% "scalaj-http" % "0.3.16",
         "org.mongodb" %% "casbah" % "2.7.3",
+        "org.json4s" %% "json4s-mongo" % "3.2.10",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar"))
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
