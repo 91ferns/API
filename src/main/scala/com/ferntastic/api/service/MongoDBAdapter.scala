@@ -4,9 +4,21 @@ package com.ferntastic.api.service
 import org.scalatra.json._
 import com.mongodb.casbah.Imports._
 
-class MongoDB {
-	val Client = MongoClient()
-	val db = Client("test")
+class MongoDBAdapter {
+	
+	val MongoConnectionUrl = sys.env.get("MONGOHQ_URL").getOrElse("")
+
+	def getConnection(fallback: String): MongoDB = MongoConnectionUrl match {
+		case connstring: String if connstring != "" => {
+			val uri = MongoClientURI(connstring)
+			MongoClient(uri)(uri.database.getOrElse(fallback))
+		}
+		case _ => MongoClient()(fallback)
+	}
+
+
+
+	val db = getConnection("test")
 	val collection = db("inventory")
 
 	def create {

@@ -4,7 +4,6 @@ import org.eclipse.jetty.webapp.WebAppContext
 import org.scalatra.servlet.ScalatraListener
 
 import com.ferntastic.api._
-import com.ferntastic.api.service.MongoDB
 
 object JettyLauncher {
   def main(args: Array[String]) {

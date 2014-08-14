@@ -15,11 +15,11 @@ import scalaj.http.Http
 import com.mongodb.casbah.Imports._
 
 
-import com.ferntastic.api.service.MongoDB
+import com.ferntastic.api.service.MongoDBAdapter
 
-class FerntasticAPI(db: MongoDB) extends FerntasticAPIStack with JacksonJsonSupport {
+class FerntasticAPI(db: MongoDBAdapter) extends FerntasticAPIStack with JacksonJsonSupport {
 
-	def this() = this(new MongoDB)
+	def this() = this(new MongoDBAdapter)
 
 	// Sets up automatic case class to JSON output serialization, required by
   	// the JValueResult trait.
