@@ -19,6 +19,8 @@ import com.ferntastic.api.service.MongoDB
 
 class FerntasticAPI(db: MongoDB) extends FerntasticAPIStack with JacksonJsonSupport {
 
+	def this() = this(new MongoDB)
+
 	// Sets up automatic case class to JSON output serialization, required by
   	// the JValueResult trait.
   	protected implicit val jsonFormats: Formats = DefaultFormats.withBigDecimal

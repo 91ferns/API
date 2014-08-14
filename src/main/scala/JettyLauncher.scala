@@ -3,12 +3,16 @@ import org.eclipse.jetty.servlet.{ DefaultServlet, ServletContextHandler }
 import org.eclipse.jetty.webapp.WebAppContext
 import org.scalatra.servlet.ScalatraListener
 
+import com.ferntastic.api._
+import com.ferntastic.api.service.MongoDB
+
 object JettyLauncher {
   def main(args: Array[String]) {
     val port = if(System.getenv("PORT") != null) System.getenv("PORT").toInt else 8080
 
     val server = new Server(port)
     val context = new WebAppContext()
+
     context.setContextPath("/")
     context.setResourceBase("src/main/webapp")
 
@@ -16,7 +20,7 @@ object JettyLauncher {
 
     server.setHandler(context)
 
-    context.addServlet(classOf[com.ferntastic.api.FerntasticAPI], "/*")
+    context.addServlet(classOf[FerntasticAPI], "/*")
 
     server.start
     server.join
